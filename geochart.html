@@ -7,18 +7,11 @@
 
       function drawRegionsMap() {
         var data = google.visualization.arrayToDataTable([
-          ['Country', 'Popularity'],
-          ['Germany', 200],
-          ['United States', 300],
-          ['Brazil', 400],
-          ['Canada', 500],
-          ['France', 600],
-          ['RU', 700]
+          ['Country', 'Popularity']
         ]);
 
         var options = {
 			backgroundColor: {fill:"blue"},
-			resolution: 'countries',
 	        region: 'world', // or 'world' or 030 or 'JP'
 	        displayMode: 'regions',
 			datalessRegionColor: "#00DD44",
@@ -41,5 +34,4 @@
     <div id="chart_div" style="width: 900px; height: 500px;"></div>
   </body>
 
-// http://www.amazon.co.jp/s/ref=nb_sb_noss?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&field-keywords=%E5%8F%B0%E6%B9%BE%E3%80%80%E3%83%93%E3%83%BC%E3%83%AB
 </html>
