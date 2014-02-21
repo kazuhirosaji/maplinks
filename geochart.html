@@ -16,9 +16,12 @@
           ['RU', 700]
         ]);
 
-        var options = {resolution: 'world',
-	        region: '030', // or 'world' or 030 or 'JP'
+        var options = {
+			backgroundColor: {fill:"blue"},
+			resolution: 'countries',
+	        region: 'world', // or 'world' or 030 or 'JP'
 	        displayMode: 'regions',
+			datalessRegionColor: "#00DD44",
 	        colorAxis: {colors: ['#e7711c', '#4374e0']} // orange to blue
 	    };
 
