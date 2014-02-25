@@ -3,24 +3,25 @@
     var code = [];
     var nationCode = [];
     var rank = [];
-    var jp_wiki_url = "https://ja.wikipedia.org/wiki/";
-    var en_wiki_url = "http://en.wikipedia.org/wiki/"
+    var jpWikiUrl = "https://ja.wikipedia.org/wiki/";
+    var enWikiUrl = "http://en.wikipedia.org/wiki/"
 
     function drawRegionsMap() {
-      var rank_data = [];
-      for (var i=0; i<rank.length; i++) {
-        rank_data.push([rank[i], i+1]);
+      var rankData = [];
+      for (var i = 0; i < rank.length; i++) {
+        rankData.push([rank[i], i+1]);
       }
-      rank_data.unshift(['Country', 'rank']);
-      console.log(rank_data);
+      rankData.unshift(['Country', 'rank']);
+      console.log(rankData);
 
-      var data = google.visualization.arrayToDataTable(rank_data);
+      var data = google.visualization.arrayToDataTable(rankData);
 
       var options = {
         backgroundColor: {fill:"blue"},
         region: 'world', // or 'world' or 030 or 'JP'
         displayMode: 'regions',
-        colorAxis: {colors: ['red', '#DDDDFF']} // orange to blue
+        datalessRegionColor: "white",
+        colorAxis: {colors: ['red', '#DDDDFF']}
       };
 
       var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
@@ -30,15 +31,13 @@
 
       function selectHandler(reg) {
         console.log(reg);
-//      alert(reg.region);
-        console.log(code.indexOf(reg.region));
-        console.log(nationCode.nations[code.indexOf(reg.region)].en_name);
-        var country = nationCode.nations[code.indexOf(reg.region)].en_name;
-        var jp_country = nationCode.nations[code.indexOf(reg.region)].jp_name;
-        alert(country);
-//      document.location = en_wiki_url + country;
-//      window.open(en_wiki_url + country , 'en_window', 'width=800, height=300');
-        window.open(jp_wiki_url + jp_country , 'jp_window', 'width=800, height=300');
+        var index = code.indexOf(reg.region);
+        console.log(index);
+        console.log(nationCode.nations[index].en_name);
+
+        var country = nationCode.nations[index].en_name;
+        var CountryName = nationCode.nations[index].jp_name;
+        window.open(jpWikiUrl + CountryName , 'jp_window', 'width=800, height=300');
       }
     };
     
@@ -51,7 +50,6 @@
         var txt = "";
         for (var i=0; i<nationCode.nations.length; i++){
           code[i] = nationCode.nations[i].code;
-          txt = txt + nationCode.nations[i].en_name + "  " + nationCode.nations[i].code+"<br>";
         }
         for (var i=0; i<nationCode.ranks.length; i++) {
           rank[i] = nationCode.ranks[i].teamName;
