@@ -1,17 +1,17 @@
     google.load('visualization', '1', {'packages': ['geochart']});
     google.setOnLoadCallback(loadRanks);
-    var code = [];
-    var nationCode = [];
-    var rank = [];
-    var jpWikiUrl = "https://ja.wikipedia.org/wiki/";
-    var enWikiUrl = "http://en.wikipedia.org/wiki/"
+    var gCountryCode = [];
+    var gNationsData = [];
+    var gTeamName = [];
+    var wikiUrl = "https://ja.wikipedia.org/wiki/";
 
     function drawRegionsMap() {
       var rankData = [];
-      for (var i = 0; i < rank.length; i++) {
-        rankData.push([rank[i], i+1]);
+      for (var i = 0; i < gTeamName.length; i++) {
+        console.log(gTeamName[i]);
+        rankData.push([gTeamName[i], i+1]);
       }
-      rankData.unshift(['Country', 'rank']);
+      rankData.unshift(['Country', 'Rank']);
       console.log(rankData);
 
       var data = google.visualization.arrayToDataTable(rankData);
@@ -31,28 +31,25 @@
 
       function selectHandler(reg) {
         console.log(reg);
-        var index = code.indexOf(reg.region);
+        var index = gCountryCode.indexOf(reg.region);
+        var countryName = gNationsData.nations[index].jp_name;
         console.log(index);
-        console.log(nationCode.nations[index].en_name);
-
-        var country = nationCode.nations[index].en_name;
-        var CountryName = nationCode.nations[index].jp_name;
-        window.open(jpWikiUrl + CountryName , 'jp_window', 'width=800, height=300');
+        console.log(countryName);
+        window.open(wikiUrl + countryName , 'jp_window', 'width=800, height=300');
       }
     };
-    
+
     function loadRanks() {
       httpObj = new XMLHttpRequest();
       httpObj.open("get", "./nations.json", true);
       httpObj.onload = function(){
         console.log("http onload");
-        nationCode = JSON.parse(this.responseText);
-        var txt = "";
-        for (var i=0; i<nationCode.nations.length; i++){
-          code[i] = nationCode.nations[i].code;
+        gNationsData = JSON.parse(this.responseText);
+        for (var i=0; i<gNationsData.nations.length; i++){
+          gCountryCode[i] = gNationsData.nations[i].code;
         }
-        for (var i=0; i<nationCode.ranks.length; i++) {
-          rank[i] = nationCode.ranks[i].teamName;
+        for (var i=0; i<gNationsData.ranks.length; i++) {
+          gTeamName[i] = gNationsData.ranks[i].teamName;
         }
         drawRegionsMap();
       }
