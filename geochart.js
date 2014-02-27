@@ -39,6 +39,14 @@ function drawRegionsMap() {
   }
 };
 
+var gCountrymaCode = [];
+
+function changeCountryName3to2(cName) {
+    var index = gCountrymaCode.indexOf(cName);
+    console.log(cName + "=>" + gCountryCode[index]);
+    return gCountryCode[index];
+}
+
 function loadRanks() {
   httpObj = new XMLHttpRequest();
   httpObj.open("get", "./nations.json", true);
@@ -47,9 +55,12 @@ function loadRanks() {
     gNationsData = JSON.parse(this.responseText);
     for (var i=0; i<gNationsData.nations.length; i++){
       gCountryCode[i] = gNationsData.nations[i].code;
+      gCountrymaCode[i] = gNationsData.nations[i].maCode;
     }
+    var maCode;
     for (var i=0; i<gNationsData.ranks.length; i++) {
-      gTeamName[i] = gNationsData.ranks[i].teamName;
+      maCode = gNationsData.ranks[i].maCode;
+      gTeamName[i] = changeCountryName3to2(maCode);
     }
     drawRegionsMap();
   }
