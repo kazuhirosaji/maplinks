@@ -41,10 +41,16 @@ function drawRegionsMap() {
 
 var gCountrymaCode = [];
 
-function changeCountryName3to2(cName) {
-    var index = gCountrymaCode.indexOf(cName);
-    console.log(cName + "=>" + gCountryCode[index]);
-    return gCountryCode[index];
+function changeCountryName3to2(cName, i) {
+  var index = gCountrymaCode.indexOf(cName);
+  console.log(cName + "=>" + gCountryCode[index]);
+  if (gCountryCode[index]) {
+    console.log(gNationsData.nations[index].en_name);
+    return gNationsData.nations[index].code;
+  } else {
+    console.log(gNationsData.ranks[i].teamName);
+    return gNationsData.ranks[i].teamName;
+  }
 }
 
 function loadRanks() {
@@ -60,7 +66,7 @@ function loadRanks() {
     var maCode;
     for (var i=0; i<gNationsData.ranks.length; i++) {
       maCode = gNationsData.ranks[i].maCode;
-      gTeamName[i] = changeCountryName3to2(maCode);
+      gTeamName[i] = changeCountryName3to2(maCode, i);
     }
     drawRegionsMap();
   }
