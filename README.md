@@ -8,6 +8,7 @@ maplinks is World map chart using google Geochart.
 
 ## Image
 Browser displays FIFA rankings chart.
-![Alt text](./images/MapImage.png)
+
+![image](https://github.com/kazuhirosaji/maplinks/blob/master/Images/MapImage.png?raw=true)
 
 You can open National team's wikipage when you touch the country.
