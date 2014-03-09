@@ -35,7 +35,11 @@ function drawRegionsMap() {
     var countryName = gNationsData.nations[index].jp_name;
     console.log(index);
     console.log(countryName);
-    window.open(wikiUrl + countryName , 'jp_window', 'width=800, height=300');
+    openNationalTeamPage(countryName);
+  }
+  
+  function openNationalTeamPage(name) {
+    window.open(wikiUrl + "サッカー" + name +"代表", 'jp_window', 'width=800, height=300');
   }
 };
 
