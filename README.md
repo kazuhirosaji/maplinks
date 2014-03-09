@@ -12,3 +12,8 @@ Browser displays FIFA rankings chart.
 ![image](https://github.com/kazuhirosaji/maplinks/blob/master/Images/MapImage.png?raw=true)
 
 You can open National team's wikipage when you touch the country.
+
+## Detail
+My blog.
+
+<http://saj-kz.hatenablog.com/entry/2014/03/09/233557>
